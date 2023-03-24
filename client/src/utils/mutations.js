@@ -7,6 +7,7 @@ mutation login($email: String!, $password: String!) {
         user {
             _id
             username
+            email
         }
     }
 }`;
@@ -18,6 +19,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
         user {
             _id
             username
+            email
          }
     }
 }`;
@@ -45,8 +47,6 @@ mutation removeBook($bookId: ID!) {
     removeBook(bookId: $bookId) {
         _id
         username
-        email
-        bookCount
         savedBooks {
             bookId
             authors
