@@ -7,10 +7,15 @@ const resolvers = {
         me: async (parent, { username }) => {
             return User.findOne({ username });
         },
+        users: async () => {
+            return User.find()
+                .select('-__v -password')
+                
+        }
     },
     Mutation: {
-        addUser: async (parent, { username, email, password } ) => {
-            const user = await User.create({ username, email, password });
+        addUser: async (parent, { username, email, password }, context  ) => {
+            const user = await User.create( { username, email, password }, context );
             const token = signToken(user);
             return { token, user };
         },
